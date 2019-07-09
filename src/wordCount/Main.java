@@ -32,10 +32,31 @@ public class Main
             }
         }
         
-        // Testing to see if HashMap separately assigned each word with a count.
-        for (String w : wordsHashMap.keySet())
+        // // Testing to see if HashMap separately assigned each word with a count.
+        // for (String w : wordsHashMap.keySet())
+        // {
+        //     System.out.println(w + ": " + wordsHashMap.get(w) + " count");
+        // }
+
+        // Turning HashMap into ArrayList
+        ArrayList<HashMap.Entry<String, Integer>> wordsArray = new ArrayList<HashMap.Entry<String, Integer>>();
+        wordsArray.addAll(wordsHashMap.entrySet());
+
+        // Sorting ArrayList by Integer Count
+        Collections.sort(wordsArray, new Comparator<HashMap.Entry<String, Integer>>()
         {
-            System.out.println(w + ": " + wordsHashMap.get(w) + " count");
+            public int compare(HashMap.Entry<String, Integer> o1, HashMap.Entry<String, Integer> o2)
+            {
+                // Instead of o1 - o2 (which would sort from lowest to highest)
+                // We do o2 - o1 to sort from highest to lowest.
+                return o2.getValue() - o1.getValue();
+            }
+        });
+
+        // Testing to see if ArrayList sorted by count properly
+        for (HashMap.Entry<String, Integer> w : wordsArray)
+        {
+            System.out.println(w);
         }
     }
 }
