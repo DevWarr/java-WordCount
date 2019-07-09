@@ -39,11 +39,11 @@ public class Main
         // }
 
         // Turning HashMap into ArrayList
-        ArrayList<HashMap.Entry<String, Integer>> wordsArray = new ArrayList<HashMap.Entry<String, Integer>>();
-        wordsArray.addAll(wordsHashMap.entrySet());
+        ArrayList<HashMap.Entry<String, Integer>> wordsArrayTemp = new ArrayList<HashMap.Entry<String, Integer>>();
+        wordsArrayTemp.addAll(wordsHashMap.entrySet());
 
         // Sorting ArrayList by Integer Count
-        Collections.sort(wordsArray, new Comparator<HashMap.Entry<String, Integer>>()
+        Collections.sort(wordsArrayTemp, new Comparator<HashMap.Entry<String, Integer>>()
         {
             public int compare(HashMap.Entry<String, Integer> o1, HashMap.Entry<String, Integer> o2)
             {
@@ -53,10 +53,46 @@ public class Main
             }
         });
 
-        // Testing to see if ArrayList sorted by count properly
+        // // Testing to see if ArrayList sorted by count properly
+        // for (HashMap.Entry<String, Integer> w : wordsArrayTemp)
+        // {
+        //     System.out.println(w);
+        // }
+
+        // Take the top 50 count and add them to a new ArrayList (so we only have the first 50)
+        ArrayList<HashMap.Entry<String, Integer>> wordsArray = new ArrayList<HashMap.Entry<String, Integer>>();
+        for (int i = 0; i < 50; i++)
+        {
+            wordsArray.add(wordsArrayTemp.get(i));
+        }
+
+        // This should display an array of the top 50 most common words, in random order
+        System.out.println("TOP 50 MOST COMMON WORDS FROM PASSAGE:\n");
+        int count = 1;
         for (HashMap.Entry<String, Integer> w : wordsArray)
         {
-            System.out.println(w);
+            System.out.println(count + " - " + w);
+            count++;
         }
+
+        // STRETCH! sort in alphabetical order
+        Collections.sort(wordsArray, new Comparator<HashMap.Entry<String, Integer>>()
+        {
+            public int compare(HashMap.Entry<String, Integer> o1, HashMap.Entry<String, Integer> o2)
+            {
+                return o1.getKey().compareTo(o2.getKey());
+            }
+        });
+
+        // Final output (Don't Comment me out please!)
+        // This should display an array of the top 50 most common words, in alphabetical order
+        System.out.println("\n\nTOP 50 MOST COMMON WORDS FROM PASSAGE(ALPHABETICAL ORDER):\n");
+        int alphaCount = 1;
+        for (HashMap.Entry<String, Integer> w : wordsArray)
+        {
+            System.out.println(alphaCount + " - " + w);
+            alphaCount++;
+        }
+
     }
 }
