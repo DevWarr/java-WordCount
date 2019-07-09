@@ -8,6 +8,9 @@ public class Main
 
         String noSymbols = str.replaceAll("[[\\.\\?\\!\\,\\;\\:\\{\\}\\(\\)\\']]", "");
         String[] words = noSymbols.split(" +");
-        System.out.println(words);
+        for (String w : words)
+        {
+            System.out.println(w);
+        }
     }
 }
